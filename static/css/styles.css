@@ -1,22 +1,35 @@
 /*******
-Colors
+Colors and Font
 *******/
 :root {
-    --primary-text: #51475c;
-    --secondary-text: #ab6c82;
-    --primary: #475c7a;
-    --secondary: #fcbb6d;
-    --accent: #d8737f;
+    --primary-text: #2d3142;
+    --secondary-text: #22333B;
+    --primary: #f9c80e;
+    --secondary: #00798c;
+    --accent: #fcca46;
     --white:  #fff;
+
+    /* --nav-bar-font: 'Audiowide', 'Lucida Handwriting', 'Apple Chancery', cursive; */
+
+    --primary-font: 'Be Vietnam Pro', 'Roboto', Arial, Helvetica, sans-serif;
+    --headings-1-font: 'Permanent Marker', 'Roboto', Arial, Helvetica, sans-serif;
+    --headings-2-font: 'Rokkitt', 'Lucida Handwriting', 'Apple Chancery', cursive;
+    --headings-3-font: 'Oswald','Roboto', Arial, Helvetica, serif;
+    --label-font: 'Rokkitt','Roboto', Arial, Helvetica, serif;
+    --brand-font: 'Homemade Apple', 'Lucida Handwriting', 'Apple Chancery', cursive;
+    --li-font: 'PT Sans Narrow', 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 /*******
 FONT
 *******/
 
+
 * {
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-family: var(--primary-font);
+    /* font-family: 'Roboto', Arial, Helvetica, sans-serif; */
     color: var(--primary-text);
+    
 }
 
 p, 
@@ -25,18 +38,33 @@ a {
     font-size: 20px;
 }
 
+h1 {
+    font-family: var(--headings-1-font);
+}
+
 h2 {
     font-size: 30px;
     font-weight: bold;
+    font-family: var(--headings-2-font);
 }
 
-h3 {
+
+h3, h3 span {
     font-size: 25px;
     font-weight: bold;
+    font-family: var(--headings-3-font);
 }
 
 body {
     overflow-x: hidden;
+}
+
+li > span {
+    font-family: var(--li-font);
+}
+
+label {
+    font-family: var(--label-font);
 }
 
 /*******
@@ -50,6 +78,7 @@ nav {
 .navbar-brand {
     color: var(--primary-text);
     font-size: 20px;
+    font-family: var(--brand-font);
 }
 
 .navbar-brand:hover,
@@ -60,6 +89,9 @@ nav {
 .nav-item a {
     color: var(--primary-text);
     font-size: 20px;
+    /* font-family: var(--nav-bar-font);
+     */
+    font-weight: bold;
 }
 
 .nav-item a:hover,
@@ -191,6 +223,11 @@ About
     margin-bottom: 2rem;
 }
 
+#about a:link {
+    text-decoration: none;
+}
+
+
 /*******
 Skills
 *******/
@@ -220,9 +257,21 @@ Skills
     line-height: 50px;
 }
 
+#skills a {
+    text-decoration: none;
+}
+
+#skills span:hover {
+    color: var(--accent);
+}
+
 /*******
 Projects
 *******/
+
+#project-desc *, #projects * {
+    color: var(--white);
+}
 
 #projects {
     background-color: var(--secondary);
@@ -230,6 +279,7 @@ Projects
     text-align: center;
     padding: 5%;
 }
+
 
 #triangle3 {
     position: absolute;
@@ -263,12 +313,12 @@ Projects
     border-radius: 10px;
     background-color: var(--primary);
     padding: 8px 15px;
-    color: var(--white);
+    color: var(--primary-text) !important;
     text-decoration: none;
 }
 
 .github-btn i {
-    color: var(--white);
+    color: var(--primary-text) !important;
 }
 
 #projects .a-project p {
@@ -286,6 +336,18 @@ Projects
     right: 0;
     transform: rotate(15deg);
     overflow: hidden;
+}
+
+.a-project a {
+    text-decoration: none;
+}
+
+.a-project span:hover {
+    color: var(--accent);
+}
+
+#project-list div:not(:first-child){
+    border-top: 2px dotted white;
 }
 
 /*******
@@ -326,6 +388,7 @@ Footer
 *******/
 
 .footer {
+    width: 100%;
     background-color: var(--primary);
     text-align: center;
     padding-bottom: 2rem;
@@ -334,7 +397,7 @@ Footer
 .footer  i,
 .footer p,
 .footer a {
-    color: var(--white);
+    color: var(--primary-text);
     text-decoration: none;
 }
 
@@ -410,7 +473,7 @@ Buttons - Detail
 #edit-delete a {
     background-color: var(--accent);
     border-radius: 10px;
-    color: var(--white);
+    color: var(--primary-text);
     padding: 13px 35px;
     text-decoration: none;
 }
@@ -420,7 +483,7 @@ Buttons - Detail
 }
 
 #edit-delete a i {
-    color: var(--white);
+    color: var(--primary-text);
     margin-right: 10px;
     font-weight: normal;
 }
@@ -437,7 +500,8 @@ Form
 }
 
 #form input,
-#form textarea {
+#form textarea,
+#form select {
     border: none;
     border: 2px solid;
     border-radius: 10px;
@@ -490,10 +554,12 @@ Form
 #form button[type='reset'] {
     margin-right: 10px;
     background-color: var(--white);
+    color: var(--secondary);
 }
 
 #form button[type='submit'] {
     background-color: var(--secondary);
+    color: var(--white);
 }
 
 /********************
@@ -505,6 +571,7 @@ EXCEEDS - About Page
     position: relative;
     padding: 3rem 5%;
     text-align: center;
+    
 }
 
 #about-page #triangle7,
@@ -526,6 +593,11 @@ EXCEEDS - About Page
     right: 0px;
 }
 
+#about-page > h2,
+#about-page > p {
+    color: var(--white);
+}
+
 #about-page h2 {
     margin-bottom: 4rem;
 }
@@ -539,14 +611,14 @@ EXCEEDS - About Page
 #about-page a {
     background-color: var(--accent);
     text-decoration: none;
-    color: var(--white);
+    color: var(--primary-text);
     border-radius: 10px;
     font-size: 20px;
     padding: 9px 40px;
 }
 
 #about-page a i {
-    color: var(--white);
+    color: var(--primary-text);
     font-size: 20px;
     padding-right: 10px;
 }

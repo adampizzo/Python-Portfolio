@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+    {% block content %}
+    <section class="header">
+        <h1>Add Project</h1>
+    </section>
+    <section id="form">
+        <form action="{{ url_for('create_project') }}" method="POST">
+            <label for="title">Project Title:</label>
+            <input type="text" name="title" id="title" placeholder="Project Name" required>
+            <label for="type">Type of Project:</label>
+            <select name="type" id="type">
+                <option value="Practice">Practice</option>
+                <option value="Project">Project</option>
+                <option value="Tutorial">Tutorial</option>
+            </select>
+            <label for="date_started">Start Date:</label>
+            <input type="date" name="date_started" id="date_started" required>
+            <label for="date_finished">Finish Date:</label>
+            <input type="date" name="date_finished" id="date_finished" required>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required></textarea>
+            <label for="skills-list" id="skills-label">Skills:</label>
+            <p>Separate each skill by a comma</p>
+            <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required></textarea>
+            <label for="github">GitHub Link:</label>
+            <input type="url" name="github" id="github" placeholder="Link to the repo" required>
+            <div>
+                <button type="reset">Clear</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
