@@ -19,9 +19,9 @@ def get_user_repo(user):
         for commit_item in commit_info:
             for i, e in enumerate(commit_info):
                 if i == 1:
-                    first_commit = clean_time(e['commit']['author']['date'])  # Gets cleaned datetime for first_commit
+                    last_commit = clean_time(e['commit']['author']['date'])  # Gets cleaned datetime for first_commit
                 elif (i == (commit_times-1)):
-                    last_commit = clean_time(e['commit']['author']['date'])  # Gets cleaned datetime for last_commit
+                    first_commit = clean_time(e['commit']['author']['date'])  # Gets cleaned datetime for last_commit
 
         new_proj = GithubInfo(name = repo['name'], user_name = repo['owner']['login'], first_commit = first_commit,
                             last_commit = last_commit, url = repo['html_url'],

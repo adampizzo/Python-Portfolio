@@ -6,24 +6,24 @@
     <section id="form">
         <form action="{{ url_for('edit_project', id=project.id) }}" method="POST">
             <label for="title">Project Title:</label>
-            <input type="text" name="title" id="title" placeholder="Project Name" required value={{ project.title }}>
+            <input type="text" name="title" id="title" placeholder="Project Name" value="{{ project.title }}" required>
             <label for="type">Type of Project:</label>
             <select name="type" id="type">
                 <option value="Practice" {% if project.type == 'Practice' %} selected {% endif %}>Practice</option>
                 <option value="Project" {% if project.type == 'Project' %} selected {% endif %}>Project</option>
                 <option value="Tutorial" {% if project.type == 'Tutorial' %} selected {% endif %}>Tutorial</option>
             </select>
-            {% comment %} <label for="date_started">Start Date:</label>
-            <input type="date" name="date_started" id="date_started" value={{ project.date_started }} required>
+            <label for="date_started">Start Date:</label>
+            <input type="date" name="date_started" id="date_started" value="{{ project.first_commit }}" required hidden>
             <label for="date_finished">Finish Date:</label>
-            <input type="date" name="date_finished" id="date_finished" value={{ project.date_finished }} required> {% endcomment %}
+            <input type="date" name="date_finished" id="date_finished" value="{{ project.last_commit }}" required hidden>
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required>{{ project.description }}</textarea>
             <label for="skills-list" id="skills-label">Skills:</label>
             <p>Separate each skill by a comma</p>
             <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required>{{ project.skills }}</textarea>
             <label for="github">GitHub Link:</label>
-            <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.url_to_project }}"required>
+            <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.url_to_project }}" required>
             <div>
                 <button type="reset">Cancel</button>
                 <button type="submit">Submit</button>

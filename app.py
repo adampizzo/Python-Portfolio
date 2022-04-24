@@ -5,7 +5,7 @@ from utils import clean_time
 
 
 project_df = Projects.query.order_by(Projects.last_commit.desc()).all()  # All projects sorted by date finished.
-print(project_df)
+
 # Routes
 
 # Index - Root Page
@@ -47,7 +47,7 @@ def create_project():
 def project_detail(id):
     project = Projects.query.get_or_404(id)
     project.skills = project.skills.split(',')
-
+    print(project.title)
     
     return render_template('detail.html', project=project, project_df=project_df)
 

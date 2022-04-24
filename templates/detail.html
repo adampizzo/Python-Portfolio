@@ -3,15 +3,15 @@
         <section class="header">
             <h2>{{ project.title }}</h2>
             <p>Type: {{ project.type }}</p>
-            <p>Start Date: {{ project.date_started }}</p>
-            <p>Finished Date: {{ project.date_finished }}</p>
+            <p>Start Date: {{ project.first_commit.strftime('%m-%d-%Y') }}</p>
+            <p>Finished Date: {{ project.last_commit.strftime('%m-%d-%Y') }}</p>
             <a href="{{ project.url_to_project }}" class="github-btn">
                 <i class="fab fa-github"></i>
                 View on GitHub
             </a>
             <ul class="project-skills">
                     {% for skill in project.skills %}
-                    <a href="https://www.google.com/search?q={{items}}" target="_blank"><li><span>{{items}}</span></li></a>
+                    <li><a href="https://www.google.com/search?q={{skill}}" target="_blank"><span>{{skill}}</span></a></li>
                     {% endfor %}
             </ul>
         </section>

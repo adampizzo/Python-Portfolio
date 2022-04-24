@@ -51,3 +51,4 @@ class Security(db.Model):
 
 if __name__ == '__main__':
     db.create_all()
+    print(db.session.query(Projects.title).all())
