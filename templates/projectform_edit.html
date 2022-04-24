@@ -10,14 +10,13 @@
             <label for="type">Type of Project:</label>
             <select name="type" id="type">
                 <option value="Practice" {% if project.type == 'Practice' %} selected {% endif %}>Practice</option>
-
                 <option value="Project" {% if project.type == 'Project' %} selected {% endif %}>Project</option>
                 <option value="Tutorial" {% if project.type == 'Tutorial' %} selected {% endif %}>Tutorial</option>
             </select>
-            <label for="date_started">Start Date:</label>
+            {% comment %} <label for="date_started">Start Date:</label>
             <input type="date" name="date_started" id="date_started" value={{ project.date_started }} required>
             <label for="date_finished">Finish Date:</label>
-            <input type="date" name="date_finished" id="date_finished" value={{ project.date_finished }} required>
+            <input type="date" name="date_finished" id="date_finished" value={{ project.date_finished }} required> {% endcomment %}
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required>{{ project.description }}</textarea>
             <label for="skills-list" id="skills-label">Skills:</label>

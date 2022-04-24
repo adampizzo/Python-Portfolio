@@ -59,7 +59,7 @@ body {
     overflow-x: hidden;
 }
 
-li > span {
+li > a > span {
     font-family: var(--li-font);
 }
 

@@ -1,10 +1,11 @@
 from flask import (redirect, render_template, url_for, request)
-from models import db, app, Projects
+from models import GithubInfo, db, app, Projects
 import datetime
+from utils import clean_time
 
 
-project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
-
+project_df = Projects.query.order_by(Projects.last_commit.desc()).all()  # All projects sorted by date finished.
+print(project_df)
 # Routes
 
 # Index - Root Page
@@ -30,11 +31,11 @@ def about():
 def create_project():
     if request.form:
         print(request.form)
-        new_project = Projects(title=request.form['title'], type=request.form['type'],
-                            date_started=clean_time(request.form['date_started']), 
-                            date_finished=clean_time(request.form['date_finished']),
-                            description=request.form['description'], skills=request.form['skills'], 
-                            url_to_project=request.form['github'])
+        git_proj = GithubInfo.query.filter(GithubInfo.url==request.form['github']).first()
+        new_project = Projects(title = request.form['title'], type = request.form['type'],
+                            first_commit = git_proj.first_commit, last_commit = git_proj.last_commit,
+                            description = request.form['description'], skills = request.form['skills'], 
+                            url_to_project = request.form['github'], num_commits = git_proj.num_commits)
         db.session.add(new_project)
         db.session.commit()
         return redirect(url_for('index'))
@@ -59,8 +60,8 @@ def edit_project(id):
     if request.form:
         project.title = request.form['title']
         project.type = request.form['type']
-        project.data_started = clean_time(request.form['date_started'])
-        project.date_finished = clean_time(request.form['date_finished'])
+        project.first_commit = clean_time(request.form['date_started'])
+        project.last_commit = clean_time(request.form['date_finished'])
         project.description = request.form['description']
         project.skills = request.form['skills']
         project.url_to_project = request.form['github']
@@ -73,11 +74,6 @@ def edit_project(id):
 def delete_project(id):
     pass
 
-
-
-
-def clean_time(time_str):
-    return datetime.datetime.strptime(time_str, '%Y-%m-%d')
 
 if __name__ == "__main__":
     db.create_all()
