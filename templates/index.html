@@ -22,7 +22,7 @@
         <h2>Skills</h2>
         <ul>
             {% for items in skill_set %}
-            <a href="https://www.google.com/search?q={{items}}" target="_blank"><li><span>{{items}}</span></li></a>
+            <li><a href="https://www.google.com/search?q={{items}}" target="_blank"><span>{{items}}</span></a></li>
             {% endfor %}
         </ul>
     </section>
@@ -34,7 +34,7 @@
             {% for project in project_df%}
             <div id="project{{ project.id }}" class="a-project">
                 <h3><a href={{ url_for('project_detail', id=project.id) }} target="_blank"><span>{{ project.title }}</span></a></h3>
-                <a href="{{ project.url_to_project }}" class="github-btn">
+                <a href="{{ project.url_to_project }}" class="github-btn" target="_blank">
                     <i class="fab fa-github"></i>
                     View on GitHub
                 </a>

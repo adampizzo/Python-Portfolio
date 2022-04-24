@@ -1,15 +1,16 @@
-from flask import (redirect, render_template, url_for, request)
+from flask import (redirect, render_template, url_for, request, flash)
 from models import db, app, Projects
 import datetime
 
 
-project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+
 
 # Routes
 
 # Index - Root Page
 @app.route('/')
 def index():
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     skill_set = set()
     projects = Projects.query.all()
     for skill in projects:
@@ -28,6 +29,7 @@ def about():
 # projects/new - Create Route
 @app.route('/projects/new', methods=['GET', 'POST'])
 def create_project():
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     if request.form:
         print(request.form)
         new_project = Projects(title=request.form['title'], type=request.form['type'],
@@ -44,6 +46,7 @@ def create_project():
 # projects/<id> - Detail Route (View)
 @app.route('/projects/<id>')
 def project_detail(id):
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     project = Projects.query.get_or_404(id)
     project.skills = project.skills.split(',')
 
@@ -54,6 +57,7 @@ def project_detail(id):
 # projecst/<id>/edit - Edit/Update Route
 @app.route('/projects/<id>/edit', methods=['GET', 'POST'])
 def edit_project(id):
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     project = Projects.query.get_or_404(id)
     
     if request.form:
@@ -65,13 +69,17 @@ def edit_project(id):
         project.skills = request.form['skills']
         project.url_to_project = request.form['github']
         db.session.commit()
+        flash('User Successfully Updated')
         return redirect(url_for('project_detail', id=project.id))
     return render_template('projectform_edit.html', project=project, project_df=project_df)
 
 # projects/<id>/delete - Delete Route
-@app.route('/projects/<id>/delete')
+@app.route('/projects/<id>/delete', methods=['GET', 'POST'])
 def delete_project(id):
-    pass
+    project = Projects.query.get_or_404(id)
+    db.session.delete(project)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 
 

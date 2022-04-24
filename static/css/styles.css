@@ -164,13 +164,25 @@ Header - Detail
 }
 
 .header .project-skills li {
-    position: relative;
+    /* position: relative; */
+    text-align: center;
 }
 
 .header  .project-skills li::before {
     content: '\FE61';
     position: absolute;
     left: -20px;
+}
+
+.project-skills > li > a {
+    text-decoration: none;
+    color: var(--primary-font)
+}
+
+.project-skills li:hover{
+    border-radius: 50%;
+    color: white;
+    background: var(--accent)
 }
 
 /*******
@@ -299,7 +311,7 @@ Projects
 }
 
 #projects .a-project {
-    text-align: left;
+    text-align: center;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -348,6 +360,17 @@ Projects
 
 #project-list div:not(:first-child){
     border-top: 2px dotted white;
+}
+
+.project-skills span {
+    text-decoration: none;
+    
+}
+
+.flashes {
+    list-style-type: none;
+    font-size: 50px;
+    color: green;
 }
 
 /*******
@@ -445,7 +468,7 @@ Description - Detail
 }
 
 #project-desc p {
-    text-align: left;
+    text-align: center;
     padding-bottom: 4rem;
 }
 
