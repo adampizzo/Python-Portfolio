@@ -13,9 +13,9 @@
                 <option value="Project">Project</option>
                 <option value="Tutorial">Tutorial</option>
             </select>
-            <label for="date_started">Start Date:</label>
+            <label for="date_started">First Commit:</label>
             <input type="date" name="date_started" id="date_started" required>
-            <label for="date_finished">Finish Date:</label>
+            <label for="date_finished">Last Commit:</label>
             <input type="date" name="date_finished" id="date_finished" required>
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required></textarea>
@@ -24,6 +24,10 @@
             <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required></textarea>
             <label for="github">GitHub Link:</label>
             <input type="url" name="github" id="github" placeholder="Link to the repo" required>
+            <label for="image">Image</label>
+            <input type="url" name="image" id="image" placeholder="Link to and image file" required>
+            <label for="image_alt">Alt Text:</label>
+            <input type="text" name="image_alt" id="image_alt" placeholder="What is in your picture?" required>
             <div>
                 <button type="reset">Clear</button>
                 <button type="submit">Submit</button>

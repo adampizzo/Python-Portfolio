@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+    {% block content %}
+    <h1 class="project-heading">Projects</h1>
+        <section class="project-flex">
+            {% for project in project_df%}
+            <div id="project{{ project.id }}" class="project-flex-item project-flex-inner">
+                <div class="project-flex-h2-img">
+                    <h2 class="project-flex-inner-item">
+                        <a href="{{ url_for('project_detail', id=project.id) }}" target="_blank">
+                            <span>{{ project.title }}</span>
+                        </a>
+                    </h2>
+                    <img src="{{project.image}}" alt="{{project.image_alt}}" class="project-flex-inner-item">
+                </div>
+                <div class="project-flex-desc">
+                    <p class="project-flex-inner-item">
+                        {{ project.description }} 
+                    </p>
+                </div>
+                <div class="project-flex-btn">
+                    <a href="{{ project.url_to_project }}" class="github-btn project-flex-inner-item" target="_blank">
+                        <i class="fab fa-github"></i>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    {% endblock %}

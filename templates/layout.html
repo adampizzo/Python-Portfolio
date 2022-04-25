@@ -32,15 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/#skills">Skills</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Projects
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {% for project in project_df %}
-                                <li><a class="dropdown-item" href="{{ url_for('project_detail', id=project.id)}}">{{ project.title }}</a></li>
-                                {% endfor %}
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('gallery')}}">Gallery</a>
+                            
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/#contact">Contact</a>
@@ -60,14 +54,17 @@
             <div class="socials">
                 <!--Delete any you don't use-->
                 <!--Icons from FontAwesome.com/icons-->
-                <a href="https://twitter.com/I_Went">
+                <a href="https://twitter.com/I_Went" target="_blank">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <a href="https://github.com/adampizzo">
+                <a href="https://github.com/adampizzo" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/adampizzo/">
+                <a href="https://www.linkedin.com/in/adampizzo/" target="_blank">
                     <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://discordapp.com/users/Atlas#9083" target="_blank">
+                    <i class="fab fa-discord"></i>
                 </a>
             </div>
             <div class="treehouse">

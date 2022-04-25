@@ -14,9 +14,9 @@
                 <option value="Project" {% if project.type == 'Project' %} selected {% endif %}>Project</option>
                 <option value="Tutorial" {% if project.type == 'Tutorial' %} selected {% endif %}>Tutorial</option>
             </select>
-            <label for="date_started">Start Date:</label>
+            <label for="date_started">First Commit:</label>
             <input type="date" name="date_started" id="date_started" value="{{ project.date_started }}" required>
-            <label for="date_finished">Finish Date:</label>
+            <label for="date_finished">Last Commit:</label>
             <input type="date" name="date_finished" id="date_finished" value="{{ project.date_finished }}" required>
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required>{{ project.description }}</textarea>
@@ -24,7 +24,11 @@
             <p>Separate each skill by a comma</p>
             <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required>{{ project.skills }}</textarea>
             <label for="github">GitHub Link:</label>
-            <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.url_to_project }}"required>
+            <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.url_to_project }}" required>
+            <label for="image">Project Image:</label>
+            <input type="url" name="image" id="image" placeholder="Link to and image file" value="{{ project.image }}" required>
+            <label for="image_alt">Alt Text:</label>
+            <input type="text" name="image_alt" id="image_alt" placeholder="What is in your picture?" value="{{ project.image_alt}}" required>
             <div>
                 <button type="reset">Cancel</button>
                 <button type="submit">Submit</button>

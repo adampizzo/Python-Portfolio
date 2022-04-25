@@ -125,7 +125,8 @@ Header  - Homepage
     text-align: center;
 }
 
-.header h1{
+.header h1,
+.project-heading {
     font-size: 32px;
     font-weight: bold;
 }
@@ -142,6 +143,12 @@ Header  - Homepage
     object-fit: cover;
     margin-bottom: 6rem;
     margin-top: 4rem;
+}
+
+.header > .project-img {
+    height: 200px;
+    width: 200px;
+    
 }
 
 /***************
@@ -180,9 +187,14 @@ Header - Detail
 }
 
 .project-skills li:hover{
-    border-radius: 50%;
+    border-radius: 10px;
     color: white;
     background: var(--accent)
+}
+
+.header p > span,
+.header p:last-of-type{
+    font-weight: bold;
 }
 
 /*******
@@ -231,7 +243,7 @@ About
 }
 
 #about p {
-    text-align: left;
+    text-align: center;
     margin-bottom: 2rem;
 }
 
@@ -275,6 +287,10 @@ Skills
 
 #skills span:hover {
     color: var(--accent);
+}
+
+.project-skills {
+    padding: 0;
 }
 
 /*******
@@ -329,8 +345,13 @@ Projects
     text-decoration: none;
 }
 
-.github-btn i {
+.github-btn > i {
     color: var(--primary-text) !important;
+}
+
+.project-info {
+    width: 100%;
+    background-color: var(--accent);
 }
 
 #projects .a-project p {
@@ -360,6 +381,11 @@ Projects
 
 #project-list div:not(:first-child){
     border-top: 2px dotted white;
+}
+
+#project-list div:last-child {
+    
+    margin-top: 1em;
 }
 
 .project-skills span {
@@ -396,7 +422,7 @@ Contact
 }
 
 #contact p {
-    text-align: left;
+    text-align: center;
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 2rem;
@@ -404,6 +430,26 @@ Contact
 
 #contact p  i {
     margin-right: 15px;
+}
+
+.arrow {
+    color: var(--accent);
+}
+
+.bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(100px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    
 }
 
 /*******
@@ -646,16 +692,117 @@ EXCEEDS - About Page
     padding-right: 10px;
 }
 
+
+/********
+Gallery
+********/
+
+.project-heading {
+    text-align: center;
+}
+
+.project-flex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    justify-items: center;
+    row-gap: 50px;
+    
+}
+
+
+
+.project-flex div {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.project-flex-h2-img {
+    background-color: var(--accent);
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.project-flex-h2-img a {
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.project-flex-h2-img span {
+    font-family: var(--headings-3-font);
+}
+
+.project-flex-item div:last-child {
+    padding-bottom: 0px;
+}
+
+.project-flex-item * {
+    text-align: center;
+}
+
+.project-flex-item div:last-child {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    flex-basis: 100%;
+    background-color: var(--white);
+}
+
+.project-flex-item img {
+    height: 220px;
+    width: 220px;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.project-flex-item p {
+    width: 90%
+}
+
+.project-flex-inner {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.project-flex-desc {
+    background-color: var(--secondary);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.project-flex-desc p {
+    margin: 20px auto;
+    color: var(--white);
+}
+
+.project-flex-item a {
+    text-decoration: none;
+}
+
+.project-flex-btn {
+    height: 30px;
+}
+
+
 /*******
 Media Queries
 *******/
+
+
 
 @media (min-width: 992px){
     h2 {
         font-size: 62px;
     }
 
-    .header h1 {
+    .header h1,
+    .project-heading {
         font-size: 64px;
         margin-bottom: 2rem;
     }
@@ -663,6 +810,12 @@ Media Queries
     .header img {
         height: 320px;
         width: 320px;
+    }
+
+    .header > .project-img {
+        height: 320px;
+        width: 320px;
+        
     }
 
     .navigation {
@@ -717,7 +870,7 @@ Media Queries
 
     #contact {
         margin-top: 4rem;
-        margin-bottom: 6rem;
+        margin-bottom: 3rem;
     }
 
     #contact h2 {
@@ -738,6 +891,22 @@ Media Queries
         width: 450px;
         padding-left: 30px;
     }
+
+    .project-flex {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .project-flex * {
+        flex: 1 1 50%;
+        
+        
+    }
+    .project-flex-desc > p{
+        height: 400px;
+    }
+    
 }
 
 @media (min-width: 1200px){
@@ -773,5 +942,11 @@ Media Queries
     #form input,
     #form textarea {
         width: 530px;
+    }
+
+    .header > .project-img {
+        max-width: 50%;
+        height: 500px;
+        width: 500px;
     }
 }

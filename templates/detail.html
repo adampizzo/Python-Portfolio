@@ -10,20 +10,23 @@
                 </ul>
             {% endif %}
             {% endwith %}
-            <h2>{{ project.title }}</h2>
             
-            <p>Type: {{ project.type }}</p>
-            <p>Start Date: {{ project.date_started }}</p>
-            <p>Finished Date: {{ project.date_finished }}</p>
-            <a href="{{ project.url_to_project }}" class="github-btn">
-                <i class="fab fa-github"></i>
-                View on GitHub
-            </a>
+            <h2>{{ project.title }}</h2>
+            <img class="project-img" src="{{ project.image }}" alt="{{ project.image_alt }}">
+            <p><span>Type: </span> {{ project.type }}</p>
+            <p><span>First Commit: </span> {{ project.date_started }} </p>
+            <p><span>Last Commit: </span> {{ project.date_finished }} </p>
+            <br>
+            <p>Skills:</p>
             <ul class="project-skills">
                     {% for skill in project.skills %}
                     <li><a href="https://www.google.com/search?q={{items}}" target="_blank">{{skill}}</a></li>
                     {% endfor %}
             </ul>
+                <a href="{{ project.url_to_project }}" class="github-btn">
+                    <i class="fab fa-github"></i>
+                    View on GitHub
+                </a>
         </section>
         <section id="project-desc">
             <div id="triangle5"></div>

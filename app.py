@@ -10,14 +10,15 @@ import datetime
 # Index - Root Page
 @app.route('/')
 def index():
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).limit(3).all()  # All projects sorted by date finished, limited to 3.
     skill_set = set()
     projects = Projects.query.all()
     for skill in projects:
-        skill = skill.skills.split(',')
+        skill = skill.skills.split(', ')
         for item in skill:
             skill_set.add(item)
     skill_set = sorted(skill_set)
+    print(skill_set)
     return render_template('index.html', skill_set=skill_set, project_df=project_df)
 
 
@@ -36,7 +37,8 @@ def create_project():
                             date_started=clean_time(request.form['date_started']), 
                             date_finished=clean_time(request.form['date_finished']),
                             description=request.form['description'], skills=request.form['skills'], 
-                            url_to_project=request.form['github'])
+                            url_to_project=request.form['github'], image=request.form['image'],
+                            image_alt=request.form['image_alt'])
         db.session.add(new_project)
         db.session.commit()
         return redirect(url_for('index'))
@@ -49,7 +51,7 @@ def project_detail(id):
     project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     project = Projects.query.get_or_404(id)
     project.skills = project.skills.split(',')
-
+    
     
     return render_template('detail.html', project=project, project_df=project_df)
 
@@ -68,8 +70,10 @@ def edit_project(id):
         project.description = request.form['description']
         project.skills = request.form['skills']
         project.url_to_project = request.form['github']
+        project.image = request.form['image']
+        project.image_alt = request.form['image_alt']
         db.session.commit()
-        flash('User Successfully Updated')
+        flash('Project Successfully Updated')
         return redirect(url_for('project_detail', id=project.id))
     return render_template('projectform_edit.html', project=project, project_df=project_df)
 
@@ -82,6 +86,11 @@ def delete_project(id):
     return redirect(url_for('index'))
 
 
+# project gallery page
+@app.route('/projects/gallery')
+def gallery():
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+    return render_template('gallery.html', project_df=project_df)
 
 
 def clean_time(time_str):
