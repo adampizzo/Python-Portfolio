@@ -29,7 +29,7 @@ FONT
     font-family: var(--primary-font);
     /* font-family: 'Roboto', Arial, Helvetica, sans-serif; */
     color: var(--primary-text);
-    
+    text-align: center;
 }
 
 p, 
@@ -163,6 +163,10 @@ Header - Detail
     margin-bottom: 4rem;
 }
 
+.project-skills {
+    padding-left: 0;
+}
+
 .header .project-skills li {
     /* position: relative; */
     text-align: center;
@@ -180,7 +184,7 @@ Header - Detail
 }
 
 .project-skills li:hover{
-    border-radius: 50%;
+    border-radius: 10px;
     color: white;
     background: var(--accent)
 }
@@ -329,6 +333,10 @@ Projects
     text-decoration: none;
 }
 
+#project-list .a-project {
+    margin: 20px 20px;
+}
+
 .github-btn i {
     color: var(--primary-text) !important;
 }
@@ -360,6 +368,8 @@ Projects
 
 #project-list div:not(:first-child){
     border-top: 2px dotted white;
+    margin-top: 40px;
+    
 }
 
 .project-skills span {
@@ -404,6 +414,26 @@ Contact
 
 #contact p  i {
     margin-right: 15px;
+}
+
+.arrow {
+    color: var(--accent);
+}
+
+.bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(100px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    
 }
 
 /*******
@@ -627,8 +657,8 @@ EXCEEDS - About Page
 
 #about-page p {
     margin-top: 2rem;
-    text-align: left;
-    margin-bottom: 5rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 #about-page a {
@@ -644,6 +674,20 @@ EXCEEDS - About Page
     color: var(--primary-text);
     font-size: 20px;
     padding-right: 10px;
+}
+
+.hobbies {
+    font-size: 20px;
+    padding-bottom: 1em;
+}
+
+.hobbies, .hobbies li {
+    color: var(--white);
+}
+
+.hobbies li {
+    font-size: 18px;
+    font-family: var(--li-font);
 }
 
 /*******

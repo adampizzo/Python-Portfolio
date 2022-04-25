@@ -14,7 +14,7 @@ def index():
     skill_set = set()
     projects = Projects.query.all()
     for skill in projects:
-        skill = skill.skills.split(',')
+        skill = skill.skills.split(', ')
         for item in skill:
             skill_set.add(item)
     skill_set = sorted(skill_set)
@@ -24,6 +24,7 @@ def index():
 # About Me 
 @app.route('/about')
 def about():
+    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
     return render_template('about.html', project_df=project_df)
 
 # projects/new - Create Route

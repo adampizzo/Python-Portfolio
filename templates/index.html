@@ -34,19 +34,13 @@
             {% for project in project_df%}
             <div id="project{{ project.id }}" class="a-project">
                 <h3><a href={{ url_for('project_detail', id=project.id) }} target="_blank"><span>{{ project.title }}</span></a></h3>
+                <p>
+                    {{ project.description }} 
+                </p>
                 <a href="{{ project.url_to_project }}" class="github-btn" target="_blank">
                     <i class="fab fa-github"></i>
                     View on GitHub
                 </a>
-                <p>
-                    {{ project.description }} 
-                </p>
-                <p>
-                    Skills: {{ project.skills }} 
-                </p>
-                <p>
-                    Type: {{ project.type }}
-                </p>
             </div>
             {% endfor %}
         </div>
@@ -56,15 +50,16 @@
         <i class="fas fa-paper-plane"></i>
         <h2>Contact Me</h2>
         <p>
-            Pastry wafer chocolate cake caramels. 
-            Gummi bears pudding sugar plum macaroon. 
-            Cake tart apple pie soufflé sweet sweet. 
-            Topping bear claw lemon drops gingerbread biscuit pudding fruitcake icing chocolate bar.
+            Feel free to contact me at my personal e-mail address below.
         </p>
         <p>
             <i class="fas fa-envelope"></i>
             adampizzo@icloud.com
         </p>
+        <p>
+            Also check out the links to my socials below.
+        </p>
+        <i class="arrow bounce fas fa-10x fa-angle-double-down"></i>
     </section>
     
     
