@@ -783,12 +783,16 @@ EXCEEDS - About Page
 }
 
 .return-home {
-    text-decoration: underline;
+    text-decoration: none;
     font-family: var(--label-font);
     color: var(--primary-text);
     display: block;
     margin: 40px;
     font-size: 30px;
+}
+
+.return-home:hover {
+    color: var(--secondary);
 }
 
 

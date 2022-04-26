@@ -20,6 +20,4 @@ class Projects(db.Model):
     description = db.Column(db.Text)
     skills = db.Column(db.Text)
     url_to_project = db.Column(db.Text)
-    image = db.Column(db.Text)
-    image_alt = db.Column(db.Text)
 
