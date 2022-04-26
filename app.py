@@ -1,16 +1,14 @@
 from flask import (redirect, render_template, url_for, request, flash)
 from models import db, app, Projects
-import datetime
-
-
+from datetime import datetime, timedelta
 
 
 # Routes
-
 # Index - Root Page
 @app.route('/')
 def index():
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).limit(3).all()  # All projects sorted by date finished, limited to 3.
+    # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
     skill_set = set()
     projects = Projects.query.all()
     for skill in projects:
@@ -18,64 +16,99 @@ def index():
         for item in skill:
             skill_set.add(item)
     skill_set = sorted(skill_set)
-    print(skill_set)
-    return render_template('index.html', skill_set=skill_set, project_df=project_df)
+    return render_template(
+        'index.html',
+        skill_set=skill_set,
+        project_df=project_df
+        )
 
 
-# About Me 
+# About Me
 @app.route('/about')
 def about():
-    return render_template('about.html', project_df=project_df)
+    # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
+    total_time = 0
+    for project in project_df:
+        project_time = (
+            project.last_commit-project.first_commit) + timedelta(days=1)
+        total_time += project_time.days
+    total_projects = len(project_df)
+    
+    return render_template(
+        'about.html',
+        project_df=project_df,
+        total_projects=total_projects,
+        total_time=total_time
+    )
+
 
 # projects/new - Create Route
 @app.route('/projects/new', methods=['GET', 'POST'])
 def create_project():
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+    # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
     if request.form:
         print(request.form)
-        new_project = Projects(title=request.form['title'], type=request.form['type'],
-                            date_started=clean_time(request.form['date_started']), 
-                            date_finished=clean_time(request.form['date_finished']),
-                            description=request.form['description'], skills=request.form['skills'], 
-                            url_to_project=request.form['github'], image=request.form['image'],
-                            image_alt=request.form['image_alt'])
+        new_project = Projects(
+            title=request.form['title'],
+            type=request.form['type'],
+            first_commit=clean_time(request.form['first_commit']),
+            last_commit=clean_time(request.form['last_commit']),
+            description=request.form['description'],
+            skills=request.form['skills'],
+            url_to_project=request.form['github']
+        )
         db.session.add(new_project)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('projectform.html', project_df=project_df)
+    return render_template(
+        'projectform.html',
+        project_df=project_df
+    )
 
 
 # projects/<id> - Detail Route (View)
 @app.route('/projects/<id>')
 def project_detail(id):
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+    # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
     project = Projects.query.get_or_404(id)
     project.skills = project.skills.split(',')
-    
-    
-    return render_template('detail.html', project=project, project_df=project_df)
+    time_taken = (project.last_commit-project.first_commit)+timedelta(days=1)
+    project.first_commit = project.first_commit.strftime('%m/%d/%Y')
+    project.last_commit = project.last_commit.strftime('%m/%d/%Y')
+    return render_template(
+        'detail.html',
+        project=project,
+        project_df=project_df,
+        time_taken=time_taken
+    )
 
 
 # projecst/<id>/edit - Edit/Update Route
 @app.route('/projects/<id>/edit', methods=['GET', 'POST'])
 def edit_project(id):
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
+    # All projects sorted by date finished.
+    project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
     project = Projects.query.get_or_404(id)
-    
     if request.form:
         project.title = request.form['title']
         project.type = request.form['type']
-        project.data_started = clean_time(request.form['date_started'])
-        project.date_finished = clean_time(request.form['date_finished'])
+        project.data_started = clean_time(request.form['first_commit'])
+        project.last_commit = clean_time(request.form['last_commit'])
         project.description = request.form['description']
         project.skills = request.form['skills']
         project.url_to_project = request.form['github']
-        project.image = request.form['image']
-        project.image_alt = request.form['image_alt']
         db.session.commit()
-        flash('Project Successfully Updated')
+        flash('User Successfully Updated')
         return redirect(url_for('project_detail', id=project.id))
-    return render_template('projectform_edit.html', project=project, project_df=project_df)
+    return render_template(
+        'projectform_edit.html',
+        project=project,
+        project_df=project_df
+    )
+
 
 # projects/<id>/delete - Delete Route
 @app.route('/projects/<id>/delete', methods=['GET', 'POST'])
@@ -85,16 +118,13 @@ def delete_project(id):
     db.session.commit()
     return redirect(url_for('index'))
 
-
-# project gallery page
-@app.route('/projects/gallery')
-def gallery():
-    project_df = Projects.query.order_by(Projects.date_finished.desc()).all()  # All projects sorted by date finished.
-    return render_template('gallery.html', project_df=project_df)
-
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html', msg=error), 404
 
 def clean_time(time_str):
     return datetime.datetime.strptime(time_str, '%Y-%m-%d')
+
 
 if __name__ == "__main__":
     db.create_all()
