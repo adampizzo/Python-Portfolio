@@ -758,7 +758,6 @@ EXCEEDS - About Page
 
 .hobbies li {
     font-size: 18px;
-    font-family: var(--li-font);
     list-style: none;
 }
 
