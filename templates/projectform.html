@@ -13,10 +13,10 @@
                 <option value="Project">Project</option>
                 <option value="Tutorial">Tutorial</option>
             </select>
-            <label for="date_started">Start Date:</label>
-            <input type="date" name="date_started" id="date_started" required>
-            <label for="date_finished">Finish Date:</label>
-            <input type="date" name="date_finished" id="date_finished" required>
+            <label for="first_commit">First Commit Date:</label>
+            <input type="date" name="first_commit" id="first_commit" required>
+            <label for="last_commit">Last Commit Date:</label>
+            <input type="date" name="last_commit" id="last_commit" required>
             <label for="description">Description:</label>
             <textarea name="description" id="description" cols="30" rows="20" placeholder="Description" required></textarea>
             <label for="skills-list" id="skills-label">Skills:</label>
@@ -24,9 +24,10 @@
             <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required></textarea>
             <label for="github">GitHub Link:</label>
             <input type="url" name="github" id="github" placeholder="Link to the repo" required>
-            <div>
-                <button type="reset">Clear</button>
-                <button type="submit">Submit</button>
+            <div class="d-flex justify-items-evenly ">
+                <button class="flex-grow-1 col-3 px-0 mx-1" type="reset">Reset</button>
+                <button class="flex-grow-1 col-3 px-0 mx-1" type="submit">Submit</button>
+                <a href="{{ url_for('index')}}" class="btn btn-primary flex-grow-1 col-3 px-0 mx-1">Back</a>
             </div>
         </form>
     </section>

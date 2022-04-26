@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+    {% block content %}
+    <section class="404-box mt-5">
+        <h1 class="">404 Error - Page Not Found</h1>
+        <div class="error-box">
+            <i class="error fas fa-10x fa-search"></i>
+        </div>
+        <a class="return-home " href="{{url_for('index')}}">Click Here To Return to the Home Page.</a>
+    </section>
+    {% endblock %}

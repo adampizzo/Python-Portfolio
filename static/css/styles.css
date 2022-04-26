@@ -75,6 +75,10 @@ nav {
     margin-top: 1rem;
 }
 
+.navigation {
+    width: 100%;
+}
+
 .navbar-brand {
     color: var(--primary-text);
     font-size: 20px;
@@ -89,9 +93,7 @@ nav {
 .nav-item a {
     color: var(--primary-text);
     font-size: 20px;
-    /* font-family: var(--nav-bar-font);
-     */
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .nav-item a:hover,
@@ -156,19 +158,19 @@ Header - Detail
 
 .header .project-skills {
     list-style: none;
-    text-align: left;
+    
     margin: auto;
     line-height: 40px;
     max-width: 250px;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .project-skills {
     padding-left: 0;
+    text-align: center;
 }
 
 .header .project-skills li {
-    /* position: relative; */
     text-align: center;
 }
 
@@ -178,15 +180,26 @@ Header - Detail
     left: -20px;
 }
 
-.project-skills > li > a {
+.project-skills > li > a,
+#skills ul li a {
     text-decoration: none;
     color: var(--primary-font)
 }
 
-.project-skills li:hover{
+.project-skills li:hover,
+#skills ul li:hover,
+#skills ul li:hover a {
     border-radius: 10px;
     color: white;
     background: var(--accent)
+}
+
+.header p:first-child {
+    padding-top: 1rem;
+}
+
+.header p > span {
+    font-weight: bold;
 }
 
 /*******
@@ -235,7 +248,7 @@ About
 }
 
 #about p {
-    text-align: left;
+    
     margin-bottom: 2rem;
 }
 
@@ -275,10 +288,6 @@ Skills
 
 #skills a {
     text-decoration: none;
-}
-
-#skills span:hover {
-    color: var(--accent);
 }
 
 /*******
@@ -383,6 +392,55 @@ Projects
     color: green;
 }
 
+.card-header {
+    background-color: var(--accent);
+    height: 100px;
+    border-radius: 20px 20px 0 0 !important;
+    text-align: center;
+}
+
+.carousel-item {
+    border-radius: 20px !important;
+}
+
+.active {
+    border-radius: 20px !important;
+}
+
+.card {
+    border-color: var(--secondary);
+    border-radius: 20px !important;
+}
+
+.card-header a {
+    text-decoration: none;
+}
+
+.card-header a > span {
+    color: var(--primary-text) !important;
+}
+
+.card-body {
+    height: 600px;
+}
+
+.card-body p {
+    color: var(--primary-text) !important;
+}
+
+#project-carousel {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.carousel-control-prev {
+    margin-left: -20%;
+}
+
+.carousel-control-next {
+    margin-right: -20%;
+}
+
 /*******
 Contact
 *******/
@@ -406,7 +464,7 @@ Contact
 }
 
 #contact p {
-    text-align: left;
+    
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 2rem;
@@ -418,6 +476,7 @@ Contact
 
 .arrow {
     color: var(--accent);
+    z-index:1000;
 }
 
 .bounce {
@@ -559,6 +618,7 @@ Form
     border: 2px solid;
     border-radius: 10px;
     border-color: var(--secondary-text);
+    background-color: var(--white);
     width: 300px;
     height: 72px;
     display: block;
@@ -597,23 +657,25 @@ Form
     text-align: center;
 }
 
-#form button {
+#form button,
+#form .btn {
     border: 2px solid var(--secondary);
     border-radius: 10px;
     font-size: 20px;
     padding: 9px 40px;
 }
 
-#form button[type='reset'] {
-    margin-right: 10px;
+#form button[type='reset'],
+#form .btn {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+#form button[type='submit'] {
     background-color: var(--white);
     color: var(--secondary);
 }
 
-#form button[type='submit'] {
-    background-color: var(--secondary);
-    color: var(--white);
-}
 
 /********************
 EXCEEDS - About Page
@@ -676,9 +738,18 @@ EXCEEDS - About Page
     padding-right: 10px;
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.bold > li {
+    font-weight: normal;
+}
+
 .hobbies {
     font-size: 20px;
     padding-bottom: 1em;
+    padding-left: 0;
 }
 
 .hobbies, .hobbies li {
@@ -688,7 +759,38 @@ EXCEEDS - About Page
 .hobbies li {
     font-size: 18px;
     font-family: var(--li-font);
+    list-style: none;
 }
+
+/*******
+404 Page
+*******/
+
+.error-box {
+    width: 50%;
+    -moz-animation: scroller 4s linear infinite alternate;
+    -webkit-animation: scroller 4s linear infinite alternate;
+    animation: scroller 4s linear infinite alternate;
+}
+.error {
+    margin: 40px;
+    transform: rotate(45deg);
+}
+
+@keyframes scroller {
+    from { transform: translateX(0%) }
+    to { transform: translateX(100%)}
+}
+
+.return-home {
+    text-decoration: underline;
+    font-family: var(--label-font);
+    color: var(--primary-text);
+    display: block;
+    margin: 40px;
+    font-size: 30px;
+}
+
 
 /*******
 Media Queries
@@ -699,6 +801,10 @@ Media Queries
         font-size: 62px;
     }
 
+    .navigation {
+        width: auto;
+    }
+
     .header h1 {
         font-size: 64px;
         margin-bottom: 2rem;
@@ -707,11 +813,6 @@ Media Queries
     .header img {
         height: 320px;
         width: 320px;
-    }
-
-    .navigation {
-        width: fit-content;
-        margin: auto;
     }
 
     .navigation .navbar-brand {
@@ -731,7 +832,8 @@ Media Queries
     #about,
     #projects,
     #contact,
-    #about-page {
+    #about-page,
+    .test-project {
         padding: 5% 15%;
     }
 
@@ -778,7 +880,8 @@ Media Queries
     }
 
     #form input,
-    #form textarea  {
+    #form textarea,
+    #form select {
         width: 450px;
         padding-left: 30px;
     }
@@ -815,7 +918,8 @@ Media Queries
     }
 
     #form input,
-    #form textarea {
+    #form textarea,
+    #form select {
         width: 530px;
     }
 }
