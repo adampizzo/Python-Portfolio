@@ -34,7 +34,6 @@ def about():
             project.last_commit-project.first_commit) + timedelta(days=1)
         total_time += project_time.days
     total_projects = len(project_df)
-    
     return render_template(
         'about.html',
         project_df=project_df,
@@ -118,12 +117,24 @@ def delete_project(id):
     db.session.commit()
     return redirect(url_for('index'))
 
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html', msg=error), 404
 
+
 def clean_time(time_str):
-    return datetime.datetime.strptime(time_str, '%Y-%m-%d')
+    '''
+    clean_time Takes a string of time and turns it into a datetime.
+
+    Arguments:
+        time_str -- Needs to be a date string in the format YYYY-MM-DD.
+
+    Returns:
+        Returns a date object instead of a string. Good for putting date data
+        from forms into a database.
+    '''
+    return datetime.strptime(time_str, '%Y-%m-%d')
 
 
 if __name__ == "__main__":

@@ -21,3 +21,8 @@ class Projects(db.Model):
     skills = db.Column(db.Text)
     url_to_project = db.Column(db.Text)
 
+
+if __name__ == "__main__":
+    pass
+
+
