@@ -20,7 +20,7 @@ def index():
         'index.html',
         skill_set=skill_set,
         project_df=project_df
-        )
+    )
 
 
 # About Me
@@ -74,7 +74,7 @@ def project_detail(id):
     project_df = Projects.query.order_by(Projects.last_commit.desc()).all()
     project = Projects.query.get_or_404(id)
     project.skills = project.skills.split(',')
-    time_taken = (project.last_commit-project.first_commit)+timedelta(days=1)
+    time_taken = (project.last_commit-project.first_commit) + timedelta(days=1)
     project.first_commit = project.first_commit.strftime('%m/%d/%Y')
     project.last_commit = project.last_commit.strftime('%m/%d/%Y')
     return render_template(
@@ -138,5 +138,6 @@ def clean_time(time_str):
 
 
 if __name__ == "__main__":
-    db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True, port=8000, host='localhost')
